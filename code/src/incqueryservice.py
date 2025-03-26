@@ -1,6 +1,5 @@
-from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.documents import Document
-from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_community.vectorstores import Chroma
 
 import os
@@ -41,7 +40,6 @@ class IncQueryService:
         Chroma.from_documents(self.incident_documents, self.embedding_model, persist_directory="./chroma_db_incidents_")        
     
     def get_incidents(self, incident_number: str = None) -> dict: 
-        print("hi")
         try:
             incidents_url = f"{self.INSTANCE}/incident"
             incidents_response = requests.get(
@@ -64,8 +62,6 @@ class IncQueryService:
             if incident_number:
                 incidents = [incident for incident in incidents if incident.get("number") == incident_number]
             incidents = [{**incident, "comments": self.get_all_comments(incident.get("sys_id")), "attachments" : self.get_all_attachments(incident.get("sys_id"))} for incident in incidents]
-            
-            # print(incidents)
             return incidents  
             
            
@@ -81,7 +77,6 @@ class IncQueryService:
             headers=self.HEADERS
             )
         response.raise_for_status()
-        # response.json().get("result")
 
         all_comments = [comment.get("value") for comment in response.json().get("result")]
 
