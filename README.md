@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/942dce73-bf8e-407f-94cd-61560c917dd7)# 🚀 Gen AI for Platform Support – Integrated Platform Environment  
+# 🚀 Gen AI for Platform Support – Integrated Platform Environment  
 
 ## 🏆 Team: train_test_split  
 
@@ -15,6 +15,8 @@ By integrating **AI-driven automation and real-time insights**, this solution ai
 ---
 
 ## 🏗️ Solution Overview  
+![WhatsApp Image 2025-03-26 at 16 06 23](https://github.com/user-attachments/assets/1a2e9c61-73dd-456b-945f-61c508762984)
+
 Our **Gen AI Integrated Platform Support Environment** combines **real-time monitoring, intelligent automation, and AI-powered assistance**.  
 
 ### 🔹 1. Dashboard (Real-time Monitoring & Incident Management)  
