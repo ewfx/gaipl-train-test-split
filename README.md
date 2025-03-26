@@ -71,29 +71,7 @@ The **Health Check Module** monitors **system and application metrics**, detects
 4. **Real-Time Alerts & Reporting**  
    - Exposes a **`/check_health` API endpoint** via Flask.  
    - **Notifies support engineers** when critical thresholds are breached.  
-   - **Integrates with AI agents** to escalate alerts to external monitoring systems.  
-
----
-
-## 🏗️ Components & Implementation  
-
-### 📌 1. **Health API (`health_api.py`)**  
-- Fetches **Prometheus metrics**.  
-- Detects **anomalies in real time**.  
-- Returns **health status reports**.  
-
-### 📌 2. **Agent Model (`executeScript.py`)**  
-- Continuously **monitors system metrics**.  
-- Detects anomalies using **ML models**.  
-- Sends **reports to an AI agent (AutoGen)**.  
-
-### 📌 3. **Prometheus Polling Agent (`prometheus_polling_agent.py`)**  
-- Fetches **all system metrics** from Prometheus.  
-- Detects **anomalies** and reports to the **Master Agent**.  
-
-### 📌 4. **System Health Check (`healthcheck.py`)**  
-- Collects and logs **system metrics**.  
-- Generates **health status reports**.  
+   - **Integrates with AI agents** to escalate alerts to external monitoring systems.    
 
 ---
 
@@ -138,6 +116,27 @@ The **Health Check Module** monitors **system and application metrics**, detects
 - **Agent-Based Monitoring** – **Continuously polls Prometheus** and triggers alerts.  
 
 ---
+
+
+### 🤖 **Health Check**  
+
+### 📌 1. **Health API (`health_api.py`)**  
+- Fetches **Prometheus metrics**.  
+- Detects **anomalies in real time**.  
+- Returns **health status reports**.  
+
+### 📌 2. **Agent Model (`executeScript.py`)**  
+- Continuously **monitors system metrics**.  
+- Detects anomalies using **ML models**.  
+- Sends **reports to an AI agent (AutoGen)**.  
+
+### 📌 3. **Prometheus Polling Agent (`prometheus_polling_agent.py`)**  
+- Fetches **all system metrics** from Prometheus.  
+- Detects **anomalies** and reports to the **Master Agent**.  
+
+### 📌 4. **System Health Check (`healthcheck.py`)**  
+- Collects and logs **system metrics**.  
+- Generates **health status reports**.
 
 ## 🚀 **Deployment Plan**  
 📌 **Refer to the Deployment Playbook in the repository.**  
