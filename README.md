@@ -1,4 +1,4 @@
-# 🚀 Gen AI for Platform Support – Integrated Platform Environment  
+![image](https://github.com/user-attachments/assets/942dce73-bf8e-407f-94cd-61560c917dd7)# 🚀 Gen AI for Platform Support – Integrated Platform Environment  
 
 ## 🏆 Team: train_test_split  
 
@@ -75,6 +75,12 @@ The **Health Check Module** monitors **system and application metrics**, detects
 
 ---
 
+## ⚙️ **Design Diagram** 
+
+![image](https://github.com/user-attachments/assets/30bbe01c-5c84-46ae-96bc-a5723e184597)
+
+---
+
 ## ⚙️ **Technology Stack**  
 | Component            | Technology Used  |
 |----------------------|-----------------|
@@ -116,7 +122,6 @@ The **Health Check Module** monitors **system and application metrics**, detects
 - **Agent-Based Monitoring** – **Continuously polls Prometheus** and triggers alerts.  
 
 ---
-
 
 ### 🤖 **Health Check**  
 
