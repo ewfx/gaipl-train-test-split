@@ -31,8 +31,6 @@ import agent
 from service import DocumentQueryService
 SESSION_ID = str(uuid.uuid4())
 
-# class Request(BaseModel):
-#     query: str
 
 INSTANCE = "dev305679"
 USERNAME = "admin"
@@ -305,63 +303,3 @@ async def get_related_incidents(incident_number: str):
         return JSONResponse(content={"related_incidents": related_incidents})
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))        
-# # Store existing incidents to prevent duplicates
-# existing_incidents = set()
-
-# # Function to fetch incidents from ServiceNow
-# def fetch_new_incidents():
-#     url = f"https://dev305679.service-now.com/api/now/table/incident?sysparm_query=state=1^ORstate=2^ORstate=6"
-#     headers = {"Accept": "application/json"}
-#     auth = HTTPBasicAuth("admin", "2jzx/UCkO2I@")  
-
-#     response = requests.get(url, headers=headers, auth=auth)
-
-#     if response.status_code == 200:
-#         incidents = response.json().get("result", [])
-#         new_incidents = []
-
-#         # print("here...")
-#         # print(incidents)
-                
-#         for incident in incidents:
-#             incident_id = incident.get("number")
-#             status = incident.get("state", "Unknown")
-            
-#             # print(f"Here 1: {incident_id} - Status: {status}")
-#             if incident_id not in existing_incidents or status == '6' or status == 6:
-#                 existing_incidents.add(incident_id)
-#                 # print(f"New Incident: {incident_id} - Status: {status}")
-#                 new_incidents.append({"id": incident_id, "status": status})
-
-#         # Send new incidents via WebSockets if found
-#         if new_incidents.__len__()>0:
-#             asyncio.run(manager.broadcast(json.dumps(new_incidents)))
-
-# # Define CrewAI Agent
-# incident_fetch_agent = Agent(
-#     role="Incident Fetcher",
-#     goal="Fetch newly created incidents from ServiceNow and push them to the UI in real time.",
-#     backstory="A real-time ServiceNow monitoring agent ensuring the UI is always updated.",
-#     verbose=True
-# )
-
-# # Define the task for the agent
-# fetch_incidents_task = Task(
-#     description="Fetch new incidents from ServiceNow and send them via WebSockets to update the UI in real time.",
-#     agent=incident_fetch_agent,
-#     function=fetch_new_incidents,
-#     expected_output="A list of new incidents fetched from ServiceNow."
-# )
-
-# # Create the Crew
-# incident_crew = Crew(
-#     agents=[incident_fetch_agent],
-#     tasks=[fetch_incidents_task]
-# )
-
-# # Schedule the agent to run every 1 minute
-# scheduler = BackgroundScheduler()
-# scheduler.add_job(fetch_new_incidents, "interval", minutes=1)
-# scheduler.start()
-
-

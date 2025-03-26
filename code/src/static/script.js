@@ -60,94 +60,6 @@ const generateResponse = async (chatEle) => {
     });
 };
 
-    // Send POST request to API, get response and set the response as paragraph text
-    // await fetch(API_URL, requestOptions)
-    // .then(res => res.json())
-    // .then(data => {
-    //     const sources = data.sources;
-    //     let response = data.response;
-    //     console.log("response: " + response);
-    //     chatEle.innerHTML =`<span class="material-symbols-outlined headset-mic">headset_mic</span>`;
-    //     // Create the main chat element
-    //     const chatElement = document.createElement("div");
-    //     chatElement.className = "chat-element";
-
-    //     // Create tab container
-    //     const tabContainer = document.createElement("div");
-    //     tabContainer.className = "tab-container";
-
-    //     // Create tabs and content
-    //     const tabs = [];
-    //     const tabContents = [];
-
-    //     // Response tab
-    //     const responseTab = document.createElement("div");
-    //     responseTab.className = "tab active";
-    //     responseTab.innerText = "Response";
-    //     tabContainer.appendChild(responseTab);
-    //     tabs.push(responseTab);
-
-    //     const responseContent = document.createElement("div");
-    //     responseContent.className = "tab-content active";
-    //     const wordLimit = 30;
-    //     responseContent.appendChild(createTabContentElement(response, wordLimit));
-    //     chatElement.appendChild(responseContent);
-    //     tabContents.push(responseContent);
-
-    //     // Source tabs
-    //     if(typeof sources != 'undefined'){
-    //         sources.forEach((source, index) => {
-    //             if(source.metadata.relevance_score >= 0.01){
-    //                 const tab = document.createElement("div");
-    //                 tab.className = "tab";
-    //                 tab.innerText = `Source ${index + 1}`;
-    //                 tabContainer.appendChild(tab);
-    //                 tabs.push(tab);
-    
-    //                 const content = document.createElement("div");
-    //                 content.className = "tab-content";
-    //                 content.appendChild(createSourceTabContentElement(source, 10));
-    //                 chatElement.appendChild(content);
-    //                 tabContents.push(content);
-    //             }
-    //         });
-    
-    //         // Add event listeners for tabs
-    //         tabs.forEach((tab, index) => {
-    //             tab.addEventListener("click", () => {
-    //                 tabs.forEach(t => t.classList.remove("active"));
-    //                 tabContents.forEach(tc => tc.classList.remove("active"));
-    //                 tab.classList.add("active");
-    //                 tabContents[index].classList.add("active");
-    //             });
-    //         });
-    //     }
-        
-    //     chatElement.insertBefore(tabContainer, chatElement.firstChild);
-    //     chatElement.appendChild(createFeedbackContainer());
-
-    //     chatEle.appendChild(chatElement);
-
-    //     // Add a button to start a new chat
-    //     const newChatButtonDiv = document.createElement("div");
-    //     newChatButtonDiv.classList.add("new-chat-container");
-    //     newChatButtonDiv.innerHTML = `
-    //         <li class="chat incoming">
-    //         <span class="material-symbols-outlined headset-mic">headset_mic</span>
-    //         <div>
-    //         <button class="option-btn" onclick="showOptions()">Start New Chat</button>
-    //         </div>
-    //         </li>
-    //     `;
-    //     chatbox.appendChild(newChatButtonDiv);
-    //     chatbox.scrollTo(0, chatbox.scrollHeight);
-    // })    
-    // .catch((error) => {
-    //     console.log(error);
-    //     messageElement.classList.add("error");
-    //     messageElement.textContent = "Oops! Something went wrong. Please try again.";
-    // }).finally(() => chatbox.scrollTo(0, chatbox.scrollHeight));
-
 // Append the user's selected option to the chatbox
 const handleOption = async (option) => {
     // Append the user's selected option to the chatbox
@@ -208,10 +120,7 @@ const handleOption = async (option) => {
             chatbox.appendChild(createChatLi("Sorry, I couldn't find any resolution.", "incoming"));
         })
         .finally(() => chatbox.scrollTo(0, chatbox.scrollHeight));
-        // Handle the case where the user wants help to resolve the incident
-        // chatbox.appendChild(createChatLi("Great! Let's proceed with the resolution.", "incoming"));
-        // chatbox.scrollTo(0, chatbox.scrollHeight);
-        // Add further steps for resolution here
+       
     } else if (option === 'no') {
         showOptions();
     } else if(option === 'Pull Related Incidents'){
@@ -243,7 +152,7 @@ const runScript = async (scriptContent) => {
         body: JSON.stringify({ script: scriptContent })
     };
 
-    await fetch(API_URL_BASE + API_URL, requestOptions)
+    await fetch(API_URL, requestOptions)
     .then(res => res)
     .then(async res => {
         const data = await res.json();
@@ -707,75 +616,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// const websocket = new WebSocket("ws://localhost:8000/ws");
-// let incidentSet = new Set(JSON.parse(localStorage.getItem("incidents")) || []);
+const socket = io('http://localhost:6075');
 
-// websocket.onmessage = function(event) {
-//     console.log("Reached WebSocket");
-//     const messages = JSON.parse(event.data);
-    
-//     messages.forEach(message => {
-//         if (message.status === "1" || message.status === "2") {
-//             message.status = message.status === "1" ? "New" : "In Progress";
-//             incidentSet.add(message);
-//             saveIncidentsToLocalStorage();
-//             addIncidentToTable(message);
-//         } else if (message.status === "6") {  // If incident is closed
-//             incidentSet.delete(message);
-//             saveIncidentsToLocalStorage();
-//             removeIncidentFromTable(message.id);
-//         }
-//     });
-// };
-
-// // Load incidents from localStorage when the page loads
-// document.addEventListener("DOMContentLoaded", () => {
-//     // Fetch the current session ID from the backend
-//     fetch("/session_id")
-//     .then(response => response.json())
-//     .then(data => {
-//         let currentSessionId = data.session_id;
-//         let storedSessionId = localStorage.getItem("session_id");
-
-//         // If session ID has changed (app restarted), clear localStorage
-//         if (storedSessionId !== currentSessionId) {
-//             console.log("App restarted, clearing local storage.");
-//             localStorage.clear();
-//             localStorage.setItem("session_id", currentSessionId);
-//         }
-//     })
-//     .catch(error => console.error("Error fetching session ID:", error));
-
-//     console.log("Page loaded, restoring incidents");
-//     let savedIncidents = JSON.parse(localStorage.getItem("incidents")) || [];
-//     savedIncidents.forEach(incident => {
-//         incidentSet.add(incident);
-//         addIncidentToTable(incident);
-//     });
-// });
-
-// // Save incidents to localStorage
-// function saveIncidentsToLocalStorage() {
-//     localStorage.setItem("incidents", JSON.stringify([...incidentSet]));
-// }
-
-// function addIncidentToTable(incident) {
-//     const table = document.getElementById("incident-table");
-    
-//     // Check if the incident is already in the table to prevent duplicates
-//     if (!document.getElementById(`incident-${incident.id}`)) {
-//         const row = table.insertRow();
-//         row.id = `incident-${incident.id}`;
-//         const cell1 = row.insertCell(0);
-//         const cell2 = row.insertCell(1);
-//         cell1.innerHTML = incident.id;
-//         cell2.innerHTML = incident.status;
-//     }
-// }
-
-// function removeIncidentFromTable(incidentId) {
-//     const row = document.getElementById(`incident-${incidentId}`);
-//     if (row) {
-//         row.remove();
-//     }
-// }
+socket.on('anomaly_alert', function(data) {
+    console.log("Anomaly Alert: ", data.message);
+    if (!document.body.classList.contains("show-chatbot")) {
+        document.body.classList.add("show-chatbot");
+    }
+    const alertChatLi = createChatLi(`ANOMALY ALERT! \n${data.message}`, "incoming");
+    alertChatLi.querySelector("p").classList.add("error");
+    chatbox.appendChild(alertChatLi);
+    chatbox.scrollTo(0, chatbox.scrollHeight);
+});
