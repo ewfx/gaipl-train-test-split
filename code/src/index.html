@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dashui-synapse-connector</title>
+    <meta name="description" content="Lovable Generated Project" />
+    <meta name="author" content="Lovable" />
+
+    <meta property="og:title" content="Lovable Generated Project" />
+    <meta property="og:description" content="Lovable Generated Project" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lovable_dev" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <!-- Google Fonts Link For Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <!-- Chatbot UI -->
+    <button class="chatbot-toggler">
+      <span class="material-symbols-rounded">forum</span>
+      <span class="material-symbols-outlined">close</span>
+    </button>
+    <div class="chatbot">
+      <div class="header-top">
+        <div class="header-bot-icon">
+          <span class="material-symbols-outlined top-bot-icon">headset_mic</span>
+          <h2>Platform Support Virtual Assistant</h2>
+          <select class="select-version">
+            <option value="version1">v1</option>
+            <option value="version2" selected>v2</option>
+          </select>
+        </div>
+        <span class="close-btn material-symbols-outlined">close</span>
+      </div>
+      <ul class="chatbox">
+        <li class="chat incoming">
+          <span class="material-symbols-outlined headset-mic">headset_mic</span>
+          <div>
+            <p>Thank you for contacting platform support virtual assistant, Please choose an option.</p>
+            <button class="option-btn" onclick="handleOption('get incident status')">Get Incident Status</button>
+            <button class="option-btn" onclick="handleOption('run automation script')">Run Automation Script</button>
+            <button class="option-btn" onclick="handleOption('chat with me for incident resolution')">Chat with me for incident resolution</button>
+            <button class="option-btn" onclick="handleOption('Summarize RCA')">Summarize RCA</button>
+            <button class="option-btn" onclick="handleOption('Launch Health Check')">Launch Health Check</button>
+            <button class="option-btn" onclick="handleOption('Pull Related Incidents')">Pull Related Incidents</button>
+          </div>
+        </li>
+      </ul>
+      <div class="chat-input">
+        <textarea class="text-area" placeholder="Please type your message..." spellcheck="false" required></textarea>
+        <span id="send-btn" class="material-symbols-rounded send-btn">send</span>
+        <span class="material-icons mic">keyboard_voice</span>
+        <input type="file" id="script-input" style="display: none;" accept=".bat">
+      </div>
+    </div>
+
+    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    <script type="module" src="/src/main.tsx"></script>
+    <script src="/static/script.js" defer></script>
+  </body>
+</html>
