@@ -117,7 +117,7 @@ The **Health Check Module** monitors **system and application metrics**, detects
 - Executes scripts and **returns responses** to the chatbot UI.  
 
 #### 4️⃣ **Similar Incident Finder**  
-- Uses **ChromaDB embeddings** to **search for past incidents**.  
+- Uses **ChromaDB embeddings** to **search for past incidents** with similar data - description, comments, or and text attachments.  
 
 #### 5️⃣ **Health Checker**  
 - **API-based Health Check** – Provides system health reports.  
