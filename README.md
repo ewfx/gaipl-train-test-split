@@ -79,7 +79,8 @@ The **Health Check Module** monitors **system and application metrics**, detects
 
 ## ⚙️ **Design Diagram** 
 
-![image](https://github.com/user-attachments/assets/30bbe01c-5c84-46ae-96bc-a5723e184597)
+![image](https://github.com/user-attachments/assets/a6e8cdf3-04d3-4ae7-9453-18a954c6517a)
+
 
 ---
 
